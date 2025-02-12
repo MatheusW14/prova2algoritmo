@@ -18,22 +18,41 @@ Exemplo de chamada:
 Importante:
 - Não se preocupe com números negativos.
 """
+
 # Sua solução aqui
 
-def quadrados_perfeitos():
-    ''' definição para retornar os numeros que são quadrados perfeitos, e os que não são
-    dentro de uma lista de numeros inseridos pelo usuário. '''
-    numeros = []
 
-    entrada = input("Digite uma sequencia de numeros separados por vírgula:")
+def classificar_quadrados(lista_numeros):
+    """
+    Classifica uma lista de números em quadrados perfeitos e não quadrados.
+    Args:
+        lista_numeros (list): Lista de números inteiros a serem classificados.
+    Returns:
+        dict: Um dicionário com duas chaves:
+            - "quadrados_perfeitos" (list): Lista de números que são quadrados perfeitos.
+            - "nao_quadrados" (list): Lista de números que não são quadrados perfeitos.
+    """
 
-    numeros = list(map(int, entrada.split(",")))
-    
-    if numeros_quadrados = map(lambda x: x % x == 1 or x % 1 == x ,numeros)
-        return numeros_quadrados()
-    else:
-        return nao_quadrados()
+    quadrados_perfeitos = []
+    nao_quadrados = []
 
-resultado = ["Quadrados Perfeitos": numero_quadrados, "Não Quadrados": nao_quadrados]
-resultado = quadrados_perfeitos()
-print(f'{resultado}')
+    for numero in lista_numeros:
+        if numero < 0:
+            continue
+        raiz = int(numero**0.5)
+        if raiz * raiz == numero:
+            quadrados_perfeitos.append(numero)
+        else:
+            nao_quadrados.append(numero)
+
+    return {"quadrados_perfeitos": quadrados_perfeitos, "nao_quadrados": nao_quadrados}
+
+
+entrada_usuario = input(
+    "Digite uma lista de numeros inteiros separados por uma virgula: "
+)
+
+lista_numeros = list(map(int, entrada_usuario.split(",")))
+
+resultado = classificar_quadrados(lista_numeros)
+print(resultado)
