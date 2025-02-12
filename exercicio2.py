@@ -17,11 +17,31 @@ Exemplo de chamada:
 Requisitos:
 - Use estruturas condicionais e funções built-in (como isinstance) para classificar os argumentos.
 """
+
+
 # Sua solução aqui
-def separar_tipos(numeros, string)
+def separar_tipos(*args):
+    """
+    Separa os argumentos fornecidos em listas de números e strings.
+    Args:
+        *args: Uma lista de argumentos que podem ser de qualquer tipo.
+    Returns:
+        dict: Um dicionário com duas chaves:
+            - "Numeros": uma lista contendo todos os argumentos que são int ou float.
+            - "Stings": uma lista contendo todos os argumentos que são strings.
+    """
 
-    Entrada = input("digite uma lista de argumentos separados por virgula:")
-    numeros = 
-    strings = 
+    numeros = []
+    strings = []
 
-    resultado = ["Numeros": numeros, "Stings": strings]
+    for arg in args:
+        if isinstance(arg, (int, float)):  # Verifica se é int ou float.
+            numeros.append(arg)
+        elif isinstance(arg, str):  # Verifica se é string
+            strings.append(arg)
+
+    return {"Numeros": numeros, "Stings": strings}
+
+
+resultado = separar_tipos(10, "Python", 3.14, True, "Teste", 42)
+print(f"{resultado}")
