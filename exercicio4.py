@@ -53,24 +53,25 @@ def somar_quadrados_pares():
 
     numbers_input = input("Digite uma lista de números separados por vírgula: ")
 
-    numbers_list = list(
-        map(int, numbers_input.split(","))
-    )  # adicionei o list e map, para listar os numeros e transforma-los em inteiros.
+    # Converte a entrada em uma lista de inteiros
+    numbers_list = list(map(int, numbers_input.split(",")))
 
+    # Calcula o quadrado de cada número usando map
     squared_numbers = list(map(lambda x: x**2, numbers_list))
 
-    even_numbers = list(
-        filter(lambda x: x % 2 == 0, squared_numbers)
-    )  # adicionei o lambda para fazer a validação dos numeros quadrados.
+    # Filtra apenas os quadrados que são pares usando filter
+    even_numbers = list(filter(lambda x: x % 2 == 0, squared_numbers))
 
+    # Soma todos os quadrados pares usando reduce
     total = reduce(
         lambda x, y: x + y, even_numbers, 0
-    )  # mudei a forma de trazer o filte, por estetica, e coloquei o squared_numbers dentro do filter para funcionar corretamente.
+    )  # Adicionado valor inicial 0 para evitar erro com lista vazia
 
-    if len(even_numbers) > 0:
+    # Calcula a média dos quadrados pares
+    if len(even_numbers) > 0:  # Evita divisão por zero
         media = total / len(even_numbers)
     else:
-        media = 0
+        media = 0  # Se não houver números pares, a média é 0
 
     return total, media
 
