@@ -19,20 +19,30 @@ Requisitos:
 - Faça uso de laços de repetição e estruturas condicionais.
 - Garanta o tratamento adequado da entrada do usuário.
 """
+
 # Sua solução aqui
 
-def nome_e_tamanho()
 
-nomes = []
+def nome_e_tamanho(nome):
+    """
+    Returns a tuple containing the given name and its length.
+    Parameters:
+    nome (str): The name to be evaluated.
+    Returns:
+    tuple: A tuple where the first element is the name (str) and the second element is the length of the name (int).
+    """
 
-entrada = (input("Digite uma lista de nomes separados por vírgula:"))
+    return (nome, len(nome))
 
-nomes = list(map(str, entrada.split(",")))
-'''nomes = [nomes.strip().lower for nome in entrada.split(",")]'''
 
-contagem_letras = reduce(lambda x,y: x + y ,nomes)
-nome_longo = map(lambda x: x >= 5  str, nomes)
-nome_curto = map(lambda x: x <= 5  str, nomes)
+entrada = input("Digite uma lista de nomes separados por vírgula:")
 
-nome_e_tamanho()
-print(f"")
+nomes = [nome.strip().lower for nome in entrada.split(",")]
+
+tuplas_nomes = [nome_e_tamanho(nome) for nome in nomes]
+
+for nome, tamanho in tuplas_nomes:
+    if tamanho > 5:
+        print(f"O nome '{nome}' tem {tamanho} caracteres e é considerado longo.")
+    else:
+        print(f"O nome '{nome}' tem {tamanho} caracteres e é considerado curto.")
