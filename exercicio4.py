@@ -43,22 +43,39 @@ Após corrigir os erros e adicionar as linhas para calcular a média, o programa
 
 Boa sorte e bons estudos!
 """
+
 from functools import reduce
 
+
 def somar_quadrados_pares():
-    ''' definição que recebe uma lista de numeros separados por virgula, transforma eles em inteiros, com o map eleva todos eles ao quadrado
-     filtra os numeros pares utilizando filter e os soma.'''
+    """definição que recebe uma lista de numeros separados por virgula, transforma eles em inteiros, com o map eleva todos eles ao quadrado
+    filtra os numeros pares utilizando filter e os soma."""
 
     numbers_input = input("Digite uma lista de números separados por vírgula: ")
-    numbers_list = list(map(int, numbers_input.split(","))) # adicionei o list e map, para listar os numeros e transforma-los em inteiros.
 
-    squared_numbers = map(lambda x: x ** 2, numbers_list) 
+    numbers_list = list(
+        map(int, numbers_input.split(","))
+    )  # adicionei o list e map, para listar os numeros e transforma-los em inteiros.
 
-    even_numbers = filter(lambda x: x % 2 == 0, squared_numbers) # adicionei o lambda para fazer a validação dos numeros quadrados.
+    squared_numbers = list(map(lambda x: x**2, numbers_list))
 
-    total = reduce(lambda x, y: x + y ,even_numbers)  # mudei a forma de trazer o filte, por estetica, e coloquei o squared_numbers dentro do filter para funcionar corretamente.
-    return total
+    even_numbers = list(
+        filter(lambda x: x % 2 == 0, squared_numbers)
+    )  # adicionei o lambda para fazer a validação dos numeros quadrados.
 
-total = somar_quadrados_pares()
+    total = reduce(
+        lambda x, y: x + y, even_numbers, 0
+    )  # mudei a forma de trazer o filte, por estetica, e coloquei o squared_numbers dentro do filter para funcionar corretamente.
 
-print(f"Soma dos quadrados pares:{total}")
+    if len(even_numbers) > 0:
+        media = total / len(even_numbers)
+    else:
+        media = 0
+
+    return total, media
+
+
+total, media = somar_quadrados_pares()
+
+print(f"Soma dos quadrados pares: {total}")
+print(f"Média dos quadrados pares: {media}")
